@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="description" content="Guess the Country - Game Edukasi Geografi Interactive yang Menyenangkan">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>🌍 Guess the Country - Game Edukasi Geografi</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font Google - Poppins & Inter & Playfair Display -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <!-- Group Header -->
+    <header class="group-header">
+        <div class="group-info">
+            <h2 class="group-name">👥 KELOMPOK 4</h2>
+            <button id="backgroundToggle" class="background-toggle" title="Toggle Background">
+                <span class="toggle-icon">🎨</span>
+                <span class="toggle-label">BG</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Animated Background -->
+    <div class="background"></div>
+    <div class="stars"></div>
+
+    <!-- Sidebar dengan Info Kelompok -->
+    <aside class="sidebar">
+        <div class="sidebar-content">
+            <h3 class="sidebar-title">👥 Tim Pengembang</h3>
+            <ul class="member-list">
+                <li class="member-card">
+                    <a href="https://pddikti.kemdiktisaintek.go.id/detail-mahasiswa/-sreZhPaodII1Gu4-0Fmg4AXKYwpF0Ig9CjWU5Zl99Gn923CCfSTb9p3zB70ax96oFUHCQ==" target="_blank" class="member-link">
+                        <span class="member-name">Zaneta Zaskiamelia Sofyan</span>
+                        <span class="member-id">(2405176058)</span>
+                    </a>
+                </li>
+                <li class="member-card">
+                    <a href="https://pddikti.kemdiktisaintek.go.id/detail-mahasiswa/N56WFtExJ39hbL48JNYqZoEfizn9EyY1xj3_VBqFg4XYJ0QOBICFoF7aM0LlZ5ayS47GJA==" target="_blank" class="member-link">
+                        <span class="member-name">Ginanjar Cahyo Nugroho</span>
+                        <span class="member-id">(2405176063)</span>
+                    </a>
+                </li>
+                <li class="member-card">
+                    <a href="https://pddikti.kemdiktisaintek.go.id/detail-mahasiswa/NEhzOT8HTAGrbi0xYbrCD78JkiCBydma7dgBwMB3mz3vwi-M2RopwylQ8GP-ijkiqJH4Bg==" target="_blank" class="member-link">
+                        <span class="member-name">Sigit Darwanto Cahyadi</span>
+                        <span class="member-id">(2405176060)</span>
+                    </a>
+                </li>
+                <li class="member-card">
+                    <a href="https://pddikti.kemdiktisaintek.go.id/detail-mahasiswa/99MlyUrFyl3kt_YmWSyf4KBLKy68qYO-JzzitkxbWCRhONVbbUOXP8ISgVrf995KgC4E1Q==" target="_blank" class="member-link">
+                        <span class="member-name">Christian Ferlin</span>
+                        <span class="member-id">(2405176071)</span>
+                    </a>
+                </li>
+            </ul>
+            <button id="musicToggle" class="music-btn">🔊 Music On</button>
+        </div>
+    </aside>
+
+    <!-- Main Container -->
+    <div class="container">
+        
+        <!-- Header -->
+        <header class="game-header">
+            <h1 class="game-title">🌍 Guess the Country</h1>
+            <p class="game-subtitle">Identifikasi negara dari benderanya!</p>
+        </header>
+
+        <!-- Game Stats -->
+        <div class="game-stats">
+            <div class="stat-item score-item">
+                <span class="stat-icon">🏆</span>
+                <span class="stat-label">Skor</span>
+                <span class="stat-value" id="score">0</span>
+            </div>
+
+            <div class="stat-item lives-item">
+                <span class="stat-icon">❤️</span>
+                <span class="stat-label">Nyawa</span>
+                <span class="stat-value" id="lives">3</span>
+            </div>
+
+            <div class="stat-item timer-item">
+                <span class="stat-icon">⏱️</span>
+                <span class="stat-label">Waktu</span>
+                <span class="stat-value timer-display" id="timer">30</span><span style="font-size: 11px;">s</span>
+            </div>
+
+            <div class="stat-item streak-item">
+                <span class="stat-icon">🔥</span>
+                <span class="stat-label">Streak</span>
+                <span class="stat-value" id="streak">0</span>
+            </div>
+
+            <div class="stat-item hints-item">
+                <span class="stat-icon">💡</span>
+                <span class="stat-label">Hints</span>
+                <span class="stat-value" id="hints-left">3</span>
+            </div>
+
+            <div class="stat-item accuracy-item">
+                <span class="stat-icon">🎯</span>
+                <span class="stat-label">Akurasi</span>
+                <span class="stat-value" id="accuracy">0%</span>
+            </div>
+        </div>
+
+        <!-- Game Card -->
+        <div class="game-card">
+            <!-- Flag Container -->
+            <div class="flag-container">
+                <img id="flag" src="" alt="Bendera Negara" class="flag-image">
+                <div class="flag-shine"></div>
+            </div>
+
+            <!-- Question -->
+            <p class="game-question" id="question">Negara apa ini?</p>
+
+            <!-- Answer Input -->
+            <div class="input-wrapper">
+                <input 
+                    type="text" 
+                    id="answer" 
+                    placeholder="Ketik nama negara..."
+                    autocomplete="off"
+                    class="answer-input">
+                <button id="submitBtn" class="submit-btn">
+                    <span>Jawab</span>
+                </button>
+            </div>
+
+            <!-- Button Area -->
+            <div class="button-area">
+                <button id="hintBtn" class="hint-btn">
+                    <span>💡</span> Hint
+                </button>
+                <button id="nextBtn" class="next-btn">
+                    <span>➜</span> Lanjut
+                </button>
+                <button id="settingsBtn" class="settings-btn" title="Audio Settings">
+                    <span>🔧</span>
+                </button>
+            </div>
+
+            <!-- Hint & Result -->
+            <div class="feedback-area">
+                <p id="hint" class="hint-text"></p>
+                <p id="result" class="result-text"></p>
+                <p id="feedback" class="feedback-message"></p>
+                <p id="fun-fact" class="fun-fact-text"></p>
+                <p id="keyboard-hint" class="keyboard-hint">Press <kbd>Enter</kbd> to submit</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="game-footer">
+            <p>Game Edukasi Geografi 🌎 | Tebak negara. Perluas wawasan.</p>
+        </footer>
+    </div>
+
+    <!-- Game Over Modal -->
+    <div id="gameOverModal" class="modal hidden">
+        <div class="modal-content">
+            <h2 id="gameOverTitle">Permainan Selesai!</h2>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <span class="stat-box-label">Skor Akhir</span>
+                    <span class="stat-box-value" id="finalScore">0</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-box-label">Akurasi</span>
+                    <span class="stat-box-value" id="finalAccuracy">0%</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-box-label">Streak Terbaik</span>
+                    <span class="stat-box-value" id="bestStreak">0</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-box-label">Total Terjawab</span>
+                    <span class="stat-box-value" id="totalAnswered">0</span>
+                </div>
+            </div>
+            <button id="restartBtn" class="restart-btn">🔄 Mulai Lagi</button>
+        </div>
+    </div>
+
+    <!-- Audio Settings Modal -->
+    <div id="audioSettingsModal" class="modal hidden">
+        <div class="modal-content audio-settings">
+            <h2>🔊 Pengaturan Audio</h2>
+            
+            <div class="volume-control">
+                <label for="musicVolume">
+                    <span>🎵 Musik</span>
+                    <span id="musicVolumeValue">50%</span>
+                </label>
+                <input type="range" id="musicVolume" min="0" max="100" value="50" class="volume-slider">
+            </div>
+
+            <div class="volume-control">
+                <label for="sfxVolume">
+                    <span>🔔 Efek Suara</span>
+                    <span id="sfxVolumeValue">80%</span>
+                </label>
+                <input type="range" id="sfxVolume" min="0" max="100" value="80" class="volume-slider">
+            </div>
+
+            <button id="closeSettingsBtn" class="close-settings-btn">✕ Tutup</button>
+        </div>
+    </div>
+
+    <!-- Audio Elements -->
+    <audio id="correctSound">
+        <source src="backssound/correct.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="wrongSound">
+        <source src="backssound/wrong.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="bgMusic" loop>
+        <source src="backssound/background.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+    <script src="script-new.js"></script>
+
+</body>
+</html>
